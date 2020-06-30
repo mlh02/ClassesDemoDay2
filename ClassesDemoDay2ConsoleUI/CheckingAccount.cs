@@ -7,20 +7,41 @@ namespace ClassesDemoDay2ConsoleUI
     public class CheckingAccount
     {
         //Properties
-        public decimal Balance { get; set; }
+        private decimal _balance;
+
+        public decimal Balance
+        {
+            get { return _balance; }
+
+            set
+            {
+                Console.WriteLine("Please enter your pin number");
+                string pin = Console.ReadLine();
+                if (pin == "1234")
+                {
+                    _balance = value;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid user");
+                    return;
+                }
+            }
+        }
+
         public string AccountNumber { get; set; }
 
         //Field = local class variable
         private string _routingNumber;
-        public string RoutingNumber 
+        public string RoutingNumber
         {
-            get 
+            get
             {
                 return _routingNumber;
-            } 
-            set 
+            }
+            set
             {
-                if(value.Length == 9)
+                if (value.Length == 9)
                 {
                     _routingNumber = value;
                 }
@@ -28,9 +49,14 @@ namespace ClassesDemoDay2ConsoleUI
                 {
                     Console.WriteLine("Invalid Routing Number");
                 }
-            } 
+            }
         }
 
         public Customer Owner { get; set; }
+
+        public void PrintBalance()
+        {
+            Console.WriteLine($"Your current balance is: {Balance}");
+        }
     }
 }
